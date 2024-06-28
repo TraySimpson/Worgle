@@ -23,7 +23,7 @@ html {
     line-height: 50px;     
     background-color: #7f8285;
     margin: 3px;
-    font-size: 2em;
+    font-size: 1.5em;
     color: #f0f0f0;
     text-align: center;
     vertical-align: middle;
@@ -31,4 +31,21 @@ html {
     font-family: "Lato", sans-serif;
     font-weight: 700;
     font-style: normal;
+}
+
+#error {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: #f0f0f0;
+    background-color: #a64141;
+    border-radius: 3px;
+    border: solid 1px #f71c1c;
+
+    text-align: center;
+    margin: 2px;
+    padding: 5px;
+    margin: 4px auto;
+    width: 266px;
+    display: none;
 }
