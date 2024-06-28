@@ -1,0 +1,34 @@
+html {
+    background-color: #303334;
+}
+
+.page {
+    width: 100vw;
+}
+
+#guessing-grid {
+    margin: auto;
+    width: 30vw;
+}
+
+.guess-row {
+    display: flex;
+    justify-content: center;
+}
+
+.cell {
+    border-radius: 3px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;     
+    background-color: #7f8285;
+    margin: 3px;
+    font-size: 2em;
+    color: #f0f0f0;
+    text-align: center;
+    vertical-align: middle;
+
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
