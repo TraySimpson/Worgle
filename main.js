@@ -27,8 +27,8 @@ function handleKeyPress(e) {
         checkLetter(letter);
         letter = letter.toUpperCase();
         addLetterToGuesses(letter);
+        renderLetter();
         checkForWord();
-        render();
     } catch (e) {
         if (e instanceof InvalidLetterException) {
             displayError('Invalid letter!');
@@ -68,10 +68,8 @@ function checkForWord() {
     }
 }
 
-function render() {
+function renderLetter() {
     let grid = document.querySelector('#guessing-grid');
-
-    
     for(let i = 0; i < guesses.length; i++) {
         let row = grid.children[i];
         let word = guesses[i];
