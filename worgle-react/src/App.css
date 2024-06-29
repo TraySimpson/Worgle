@@ -1,3 +1,8 @@
+html {
+  background-color: #303334;
+  overflow: hidden;
+}
+
 .App {
   text-align: center;
 }
