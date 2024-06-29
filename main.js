@@ -3,6 +3,7 @@
 const MAX_GUESSES = 6;
 const WORD_LENGTH = 5;
 
+let secretWord = 'HELLO';
 let guesses = [ [ ] ];
 
 function init() {
@@ -32,6 +33,8 @@ function handleKeyPress(e) {
     } catch (e) {
         if (e instanceof InvalidLetterException) {
             displayError('Invalid letter!');
+        } else if (e instanceof InvalidWordException) {
+            displayError('Invalid word!');
         } else {
             console.error(Error);
         }
@@ -62,10 +65,18 @@ function addLetterToGuesses(letter) {
 
 function checkForWord() {
     let latestWord = guesses[guesses.length - 1];
-    if (latestWord.length === WORD_LENGTH) {
-        let word = latestWord.join('');
-        //TODO
-    }
+    if (latestWord.length !== WORD_LENGTH)
+        return;
+    let word = latestWord.join('');
+    if (!validateWord(word))
+        throw new InvalidWordException();
+    renderWordColors(word);
+}
+
+function validateWord(word) {
+    // TODO lookup words in dictionary
+    // Also don't allow guesses that are already guessed
+    return true;
 }
 
 function renderLetter() {
@@ -77,6 +88,26 @@ function renderLetter() {
             let cell = row.children[j];
             cell.textContent = word[j];
         }
+    }
+}
+
+function renderWordColors(word) {
+    let grid = document.querySelector('#guessing-grid');
+    let row = grid.children[guesses.length - 1];
+    for(let i = 0; i < word.length; i++) {
+        let cell = row.children[i];
+        cell.classList.add('cell-' + getCellColorClass(word[i], i));
+    }
+}
+
+function getCellColorClass(letter, index) {
+    let correctLetter = secretWord[index];
+    if (letter === correctLetter) {
+        return 'correct';
+    } else if (secretWord.includes(letter)) {
+        return 'wrong-place';
+    } else {
+        return 'incorrect';
     }
 }
 
@@ -96,5 +127,11 @@ init();
 class InvalidLetterException extends Error {
     constructor() {
         super('Invalid letter');
+    }
+}
+
+class InvalidWordException extends Error {
+    constructor() {
+        super('Invalid word');
     }
 }

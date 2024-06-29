@@ -50,3 +50,15 @@ html {
     width: 266px;
     display: none;
 }
+
+.cell-correct {
+    background-color: #4a9e4a;
+}
+
+.cell-wrong-place {
+    background-color: #c8b339;
+}
+
+.cell-incorrect {
+    background-color: #5e6164;
+}
