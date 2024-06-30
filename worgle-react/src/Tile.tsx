@@ -1,8 +1,6 @@
 import './Tile.css';
 
-let letter: string = "A";
-
-export default function Tile() {
+export default function Tile({letter}: {letter: string}) {
   return (
     <div className="tile">
       {letter.toUpperCase()}

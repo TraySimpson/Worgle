@@ -4,15 +4,18 @@ import './TileRow.css';
 const maxLetters: number = 5;
 const letters: string[] = [];
 
-export default function TileRow() { 
+export default function TileRow({word} : {word: string}) { 
     return (
         <div className="tile-row">
-            {letters.map((letter, index) => 
-                <Tile />
-            )}
             {Array.from({ length: maxLetters - letters.length }).map((_, index) => (
-                <Tile key={index} />
+                <Tile key={index} letter={getLetterAt(word, index)}/>
             ))}
         </div>
     );
+}
+
+function getLetterAt(word: string, index: number) {
+    return word.length > index ?
+        word[index] :
+        '';
 }
