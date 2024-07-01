@@ -12,7 +12,7 @@ export default function TileGrid() {
         return () => {
             document.removeEventListener("keydown", handleKeyPress);
         };
-    }, []);
+    }, [guesses, handleKeyPress]);
 
     function getGuessAtIndex(guesses: string[], index: number) {
         return guesses.length > index ?
@@ -58,7 +58,7 @@ export default function TileGrid() {
             }
             setGuesses([...guesses, letter]);
         } else {
-            setGuesses([...guesses.slice(0, guesses.length - 2), latestWord + letter]);
+            setGuesses([...guesses.slice(0, guesses.length - 1), latestWord + letter]);
         }
       }
       
