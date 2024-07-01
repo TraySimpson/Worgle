@@ -9,10 +9,11 @@ export default function TileGrid() {
 
     useEffect(() => {
         document.addEventListener("keydown", handleKeyPress);
+        console.log("using effect!");
         return () => {
             document.removeEventListener("keydown", handleKeyPress);
         };
-    }, [guesses, handleKeyPress]);
+    });
 
     function getGuessAtIndex(guesses: string[], index: number) {
         return guesses.length > index ?
