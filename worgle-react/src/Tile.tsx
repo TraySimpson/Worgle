@@ -6,5 +6,4 @@ export default function Tile({letter}: {letter: string}) {
       {letter.toUpperCase()}
     </div>
   );
-
 }

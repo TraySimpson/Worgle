@@ -1,10 +1,9 @@
 import Tile from './Tile';
 import './TileRow.css';
 
-const maxLetters: number = 5;
 const letters: string[] = [];
 
-export default function TileRow({word} : {word: string}) { 
+export default function TileRow({word, maxLetters} : {word: string, maxLetters: number}) { 
     return (
         <div className="tile-row">
             {Array.from({ length: maxLetters - letters.length }).map((_, index) => (
