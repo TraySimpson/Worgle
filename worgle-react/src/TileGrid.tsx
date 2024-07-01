@@ -1,12 +1,18 @@
 import TileRow from "./TileRow";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const numberOfRows: number = 6;
 const maxLetters: number = 5;
 
 export default function TileGrid() {
     const [guesses, setGuesses] = useState([""]);
-    document.addEventListener("keydown", handleKeyPress);
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyPress);
+        return () => {
+            document.removeEventListener("keydown", handleKeyPress);
+        };
+    }, []);
 
     function getGuessAtIndex(guesses: string[], index: number) {
         return guesses.length > index ?
