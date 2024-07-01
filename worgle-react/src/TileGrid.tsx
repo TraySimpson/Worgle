@@ -50,13 +50,9 @@ export default function TileGrid() {
             if (guesses.length === numberOfRows) {
                 throw new Error('No more guesses left');
             }
-            let newGuesses = guesses;
-            newGuesses.push(letter);
-            setGuesses(newGuesses);
+            setGuesses([...guesses, letter]);
         } else {
-            let newGuesses = guesses;
-            newGuesses[newGuesses.length-1] = newGuesses[newGuesses.length-1] + letter;
-            setGuesses(newGuesses);
+            setGuesses([...guesses.slice(0, guesses.length - 2), latestWord + letter]);
         }
       }
       
