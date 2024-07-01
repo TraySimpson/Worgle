@@ -6,6 +6,12 @@ const maxLetters: number = 5;
 
 export default function TileGrid() {
     const [guesses, setGuesses] = useState([""]);
+    const [secretWord, setSecretWord] = useState("SHARP");
+
+    const isGameWon = guesses[guesses.length - 1] === secretWord;
+    const isGameLost = !isGameWon && (
+        guesses.length === numberOfRows && guesses[guesses.length - 1].length === maxLetters);
+    const isGameOver = isGameLost || isGameWon;
 
     useEffect(() => {
         document.addEventListener("keydown", handleKeyPress);
@@ -22,6 +28,9 @@ export default function TileGrid() {
     }
     
     function handleKeyPress(event: KeyboardEvent) {
+        if (isGameOver) {
+            return;
+        }
         try {
             let letter = event.key;
             checkLetter(letter);
