@@ -8,7 +8,7 @@ export default function TileGrid() {
     const [guesses, setGuesses] = useState([""]);
     document.addEventListener("keydown", handleKeyPress);
 
-    function getGuessAtIndex(index: number) {
+    function getGuessAtIndex(guesses: string[], index: number) {
         return guesses.length > index ?
             guesses[index] :
             '';
@@ -50,10 +50,11 @@ export default function TileGrid() {
             if (guesses.length === numberOfRows) {
                 throw new Error('No more guesses left');
             }
-            let newGuesses = [...guesses, letter];
+            let newGuesses = guesses;
+            newGuesses.push(letter);
             setGuesses(newGuesses);
         } else {
-            let newGuesses = [...guesses.slice(0, guesses.length-1), guesses[guesses.length-1] + letter];
+            let newGuesses = guesses;
             newGuesses[newGuesses.length-1] = newGuesses[newGuesses.length-1] + letter;
             setGuesses(newGuesses);
         }
@@ -78,7 +79,7 @@ export default function TileGrid() {
             {Array.from({ length: numberOfRows }).map((_, index) => (
                 <TileRow 
                     key={index} 
-                    word={getGuessAtIndex(index)}
+                    word={getGuessAtIndex(guesses, index)}
                     maxLetters={maxLetters}
                 />
             ))}
