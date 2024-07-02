@@ -14,6 +14,7 @@ export default function TileGrid() {
     const isGameLost = !isGameWon && (
         guesses.length === numberOfRows && lastWord.length === maxLetters);
     const isGameOver = isGameLost || isGameWon;
+    const canBackspace = lastWord.length > 0 && lastWord.length < maxLetters;
 
     useEffect(() => {
         document.addEventListener("keydown", handleKeyPress);
@@ -35,7 +36,7 @@ export default function TileGrid() {
         }
         try {
             let letter = event.key;
-            if (letter === 'Backspace') {
+            if (letter === 'Backspace' && canBackspace) {
                 const lastWord = [...guesses[guesses.length - 1]];
                 setGuesses([...guesses.slice(0, guesses.length - 1),
                     lastWord.slice(0, lastWord.length - 1)]);
