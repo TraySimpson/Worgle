@@ -78,6 +78,15 @@ export default function TileGrid() {
             return;
         if (!validateLastWord())
             throw new InvalidWordException();
+        let newWord = guesses[guesses.length - 1].map((tile, index) => {
+            if (tile.letter === secretWord[index]) {
+                return new TileData(tile.letter, TileStatus.CORRECT);
+            } else if (secretWord.includes(tile.letter)) {
+                return new TileData(tile.letter, TileStatus.WRONG_PLACE);
+            } else {
+                return new TileData(tile.letter, TileStatus.DEFAULT);
+            }});
+        setGuesses([...guesses.slice(0, guesses.length - 1), newWord]);
       }
       
       function validateLastWord() {
