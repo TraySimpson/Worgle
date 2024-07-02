@@ -5,7 +5,10 @@ function App() {
   return (
     <div 
       className="App">
-      <TileGrid/>
+      <TileGrid
+        numberOfRows={6}
+        maxLetters={5}
+      />
     </div>
   );
 }

@@ -1,11 +1,10 @@
+import Keyboard from "./Keyboard";
 import TileRow from "./TileRow";
 import { TileData, TileStatus } from "./TileStatus";
 import { useEffect, useState } from 'react';
 
-const numberOfRows: number = 6;
-const maxLetters: number = 5;
 
-export default function TileGrid() {
+export default function TileGrid({numberOfRows, maxLetters}: {numberOfRows: number, maxLetters: number}) {
     const [guesses, setGuesses] = useState<TileData[][]>([[]]);
     const [secretWord, setSecretWord] = useState("SHARP");
 
@@ -105,15 +104,21 @@ export default function TileGrid() {
       }
       
     return (
-        <div className="tile-grid">
-            {Array.from({ length: numberOfRows }).map((_, index) => (
-                <TileRow 
-                    key={index} 
-                    word={getGuessAtIndex(index)}
-                    maxLetters={maxLetters}
-                />
-            ))}
-        </div>
+        <>
+            <div className="tile-grid">
+                {Array.from({ length: numberOfRows }).map((_, index) => (
+                    <TileRow 
+                        key={index} 
+                        word={getGuessAtIndex(index)}
+                        maxLetters={maxLetters}
+                    />
+                ))}
+            </div>
+            <Keyboard 
+                usedLetters={guesses.flat().map(tile => tile.letter)}
+            />
+        </>
+
     );
 }
 
