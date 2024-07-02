@@ -1,16 +1,18 @@
 import TileRow from "./TileRow";
+import { TileData, TileStatus } from "./TileStatus";
 import { useEffect, useState } from 'react';
 
 const numberOfRows: number = 6;
 const maxLetters: number = 5;
 
 export default function TileGrid() {
-    const [guesses, setGuesses] = useState([""]);
+    const [guesses, setGuesses] = useState<TileData[][]>([[]]);
     const [secretWord, setSecretWord] = useState("SHARP");
 
-    const isGameWon = guesses[guesses.length - 1] === secretWord;
+    const lastWord = guesses[guesses.length - 1].map(tile => tile.letter).join('');
+    const isGameWon = lastWord === secretWord;
     const isGameLost = !isGameWon && (
-        guesses.length === numberOfRows && guesses[guesses.length - 1].length === maxLetters);
+        guesses.length === numberOfRows && lastWord.length === maxLetters);
     const isGameOver = isGameLost || isGameWon;
 
     useEffect(() => {
@@ -21,10 +23,10 @@ export default function TileGrid() {
         };
     });
 
-    function getGuessAtIndex(guesses: string[], index: number) {
+    function getGuessAtIndex(index: number) {
         return guesses.length > index ?
             guesses[index] :
-            '';
+            [];
     }
     
     function handleKeyPress(event: KeyboardEvent) {
@@ -59,28 +61,26 @@ export default function TileGrid() {
       }
       
       function addLetterToGuesses(letter: string) {
-        let latestWord = guesses.length > 0 ?
-            guesses[guesses.length - 1] :
-            "";
-        if (latestWord.length === maxLetters) {
+        if (lastWord.length === maxLetters) {
             if (guesses.length === numberOfRows) {
                 throw new Error('No more guesses left');
             }
-            setGuesses([...guesses, letter]);
+            setGuesses([...guesses, [new TileData(letter, TileStatus.DEFAULT)]]);
         } else {
-            setGuesses([...guesses.slice(0, guesses.length - 1), latestWord + letter]);
+            setGuesses([...guesses.slice(0, guesses.length - 1), 
+                [...guesses[guesses.length - 1], new TileData(letter, TileStatus.DEFAULT)]
+            ]);
         }
       }
       
       function checkForWord() {
-        let latestWord = guesses[guesses.length - 1];
-        if (latestWord.length !== maxLetters)
+        if (lastWord.length !== maxLetters)
             return;
-        if (!validateWord(latestWord))
+        if (!validateLastWord())
             throw new InvalidWordException();
       }
       
-      function validateWord(word: string) {
+      function validateLastWord() {
         // TODO lookup words in dictionary
         // Also don't allow guesses that are already guessed
         return true;
@@ -91,7 +91,7 @@ export default function TileGrid() {
             {Array.from({ length: numberOfRows }).map((_, index) => (
                 <TileRow 
                     key={index} 
-                    word={getGuessAtIndex(guesses, index)}
+                    word={getGuessAtIndex(index)}
                     maxLetters={maxLetters}
                 />
             ))}

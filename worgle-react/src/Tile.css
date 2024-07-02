@@ -16,3 +16,15 @@
     font-weight: 700;
     font-style: normal;
 }
+
+.tile-correct {
+    background-color: #4a9e4a;
+}
+
+.tile-wrong-place {
+    background-color: #c8b339;
+}
+
+.tile-default {
+    background-color: #5e6164;
+}

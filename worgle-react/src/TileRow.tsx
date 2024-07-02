@@ -1,20 +1,23 @@
 import Tile from './Tile';
+import { TileData } from './TileStatus';
 import './TileRow.css';
 
-const letters: string[] = [];
+export default function TileRow({word, maxLetters} : {word: TileData[], maxLetters: number}) {
 
-export default function TileRow({word, maxLetters} : {word: string, maxLetters: number}) { 
+    function getDataAtIndex(index: number) {
+        return word.length > index ?
+            word[index] :
+            new TileData('', 0);
+    }
+
     return (
         <div className="tile-row">
-            {Array.from({ length: maxLetters - letters.length }).map((_, index) => (
-                <Tile key={index} letter={getLetterAt(word, index)}/>
+            {Array.from({ length: maxLetters }).map((_, index) => (
+                <Tile 
+                    key={index}
+                    tile={getDataAtIndex(index)}
+                />
             ))}
         </div>
     );
-}
-
-function getLetterAt(word: string, index: number) {
-    return word.length > index ?
-        word[index] :
-        '';
 }
