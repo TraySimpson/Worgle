@@ -37,8 +37,8 @@ export default function TileGrid() {
             let letter = event.key;
             checkLetter(letter);
             letter = letter.toUpperCase();
-            addLetterToGuesses(letter);
-            checkForWord();
+            let state = addLetterToGuesses(letter);
+            checkForWord(state);
         } catch (e) {
             if (e instanceof InvalidLetterException) {
                 console.error('Invalid letter!');
@@ -65,20 +65,22 @@ export default function TileGrid() {
             if (guesses.length === numberOfRows) {
                 throw new Error('No more guesses left');
             }
-            setGuesses([...guesses, [new TileData(letter, TileStatus.DEFAULT)]]);
+            return [...guesses, [new TileData(letter, TileStatus.DEFAULT)]];
         } else {
-            setGuesses([...guesses.slice(0, guesses.length - 1), 
+            return [...guesses.slice(0, guesses.length - 1), 
                 [...guesses[guesses.length - 1], new TileData(letter, TileStatus.DEFAULT)]
-            ]);
+            ];
         }
       }
       
-      function checkForWord() {
-        if (lastWord.length !== maxLetters)
+      function checkForWord(state: TileData[][]) {
+        if (state[state.length - 1].length !== maxLetters) {
+            setGuesses(state);
             return;
+        }
         if (!validateLastWord())
             throw new InvalidWordException();
-        let newWord = guesses[guesses.length - 1].map((tile, index) => {
+        let newWord = state[state.length - 1].map((tile, index) => {
             if (tile.letter === secretWord[index]) {
                 return new TileData(tile.letter, TileStatus.CORRECT);
             } else if (secretWord.includes(tile.letter)) {
@@ -86,7 +88,7 @@ export default function TileGrid() {
             } else {
                 return new TileData(tile.letter, TileStatus.DEFAULT);
             }});
-        setGuesses([...guesses.slice(0, guesses.length - 1), newWord]);
+        setGuesses([...state.slice(0, state.length - 1), newWord]);
       }
       
       function validateLastWord() {
