@@ -1,4 +1,5 @@
 import KeyboardKey from "./KeyboardKey";
+import './Keyboard.css';
 
 export default function Keyboard({ usedLetters}: { usedLetters: string[] }) {
     let topRow = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];

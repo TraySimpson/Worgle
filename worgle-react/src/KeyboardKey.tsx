@@ -1,4 +1,4 @@
-
+import './KeyboardKey.css';
 
 export default function KeyboardKey({letter, isUsed, onClick} : {letter: string, isUsed: boolean, onClick: () => void}) {
     function getClasses() {
@@ -6,11 +6,11 @@ export default function KeyboardKey({letter, isUsed, onClick} : {letter: string,
     }
 
     return (
-        <button 
+        <div 
             className={getClasses()}
             onClick={onClick}
         >
             {letter.toUpperCase()}
-        </button>
+        </div>
     );
 }
