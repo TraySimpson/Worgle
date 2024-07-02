@@ -35,10 +35,17 @@ export default function TileGrid() {
         }
         try {
             let letter = event.key;
-            checkLetter(letter);
-            letter = letter.toUpperCase();
-            let state = addLetterToGuesses(letter);
-            checkForWord(state);
+            if (letter === 'Backspace') {
+                const lastWord = [...guesses[guesses.length - 1]];
+                setGuesses([...guesses.slice(0, guesses.length - 1),
+                    lastWord.slice(0, lastWord.length - 1)]);
+            } else {
+                checkLetter(letter);
+                letter = letter.toUpperCase();
+                let state = addLetterToGuesses(letter);
+                state = checkForWord(state);
+                setGuesses(state);
+            }
         } catch (e) {
             if (e instanceof InvalidLetterException) {
                 console.error('Invalid letter!');
@@ -73,10 +80,9 @@ export default function TileGrid() {
         }
       }
       
-      function checkForWord(state: TileData[][]) {
+      function checkForWord(state: TileData[][]): TileData[][] {
         if (state[state.length - 1].length !== maxLetters) {
-            setGuesses(state);
-            return;
+            return state;
         }
         if (!validateLastWord())
             throw new InvalidWordException();
@@ -88,7 +94,7 @@ export default function TileGrid() {
             } else {
                 return new TileData(tile.letter, TileStatus.DEFAULT);
             }});
-        setGuesses([...state.slice(0, state.length - 1), newWord]);
+        return [...state.slice(0, state.length - 1), newWord];
       }
       
       function validateLastWord() {
