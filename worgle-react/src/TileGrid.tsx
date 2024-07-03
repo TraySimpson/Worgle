@@ -1,3 +1,4 @@
+import AlertMessage from "./AlertMessage";
 import Keyboard from "./Keyboard";
 import TileRow from "./TileRow";
 import { TileData, TileStatus } from "./TileStatus";
@@ -123,6 +124,18 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
         return dictionary.includes(word.toLowerCase()) && 
             !guessedWords.slice(0, guessedWords.length - 1).includes(word);
       }
+
+      function getMessage(): {message: string, type: string} {
+        if (isGameWon) {
+            return {message: "You win!", type: "success"};
+        }
+        if (lastWordErrored) {
+            return {message: "Incorrect spelling. Try again!", type: "error"};
+        }
+        return {message: "", type: ""};
+      
+
+      }
       
     return (
         <>
@@ -135,6 +148,11 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
                     />
                 ))}
             </div>
+            <AlertMessage
+                message={getMessage().message}
+                type={getMessage().type}
+                duration={2000}
+            />
             <Keyboard 
                 usedLetters={guesses.flat().map(tile => tile.letter)}
                 onKeyPress={handleKey}

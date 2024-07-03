@@ -11,8 +11,10 @@ This project is a simple Wordle clone web app :)
 - [X] Add backspace button on screen
 - [X] Fix incorrect words going to next row
 - [X] Randomly pick word
-- [ ] Alert bar for invalid word
-- [ ] Alert bar win message
+- [X] Alert bar for invalid word
+- [X] Alert bar win message
+- [ ] Create fadeout for messages
 - [ ] Tile animation for reveal
+- [ ] Add keydown event listener only on load
 - [ ] Make secure HTTPS?
 - [ ] Add Docker
