@@ -4,9 +4,8 @@ import { TileData, TileStatus } from "./TileStatus";
 import { useEffect, useState } from 'react';
 
 
-export default function TileGrid({numberOfRows, maxLetters, dictionary}: {numberOfRows: number, maxLetters: number, dictionary: string[]}) {
+export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWord}: {numberOfRows: number, maxLetters: number, dictionary: string[], secretWord: string}) {
     const [guesses, setGuesses] = useState<TileData[][]>([[]]);
-    const [secretWord, setSecretWord] = useState("REACT");
 
     const lastWord = guesses[guesses.length - 1].map(tile => tile.letter).join('');
     const isGameWon = lastWord === secretWord;
