@@ -4,9 +4,9 @@ import { TileData, TileStatus } from "./TileStatus";
 import { useEffect, useState } from 'react';
 
 
-export default function TileGrid({numberOfRows, maxLetters}: {numberOfRows: number, maxLetters: number}) {
+export default function TileGrid({numberOfRows, maxLetters, dictionary}: {numberOfRows: number, maxLetters: number, dictionary: string[]}) {
     const [guesses, setGuesses] = useState<TileData[][]>([[]]);
-    const [secretWord, setSecretWord] = useState("TROOP");
+    const [secretWord, setSecretWord] = useState("REACT");
 
     const lastWord = guesses[guesses.length - 1].map(tile => tile.letter).join('');
     const isGameWon = lastWord === secretWord;
@@ -85,8 +85,12 @@ export default function TileGrid({numberOfRows, maxLetters}: {numberOfRows: numb
         if (wordToCheck.length !== maxLetters) {
             return state;
         }
-        if (!validateLastWord())
-            throw new InvalidWordException();
+        if (!validateLastWord(wordToCheck.map(tile => tile.letter).join(''))) {
+            const newWord = wordToCheck.map((tile) => {
+                return new TileData(tile.letter, TileStatus.ERROR);
+            });
+            return [...state.slice(0, state.length - 1), newWord];
+        }
         const newWord = wordToCheck.map((tile, index) => {
             if (tile.letter === secretWord[index]) {
                 return new TileData(tile.letter, TileStatus.CORRECT);
@@ -105,10 +109,10 @@ export default function TileGrid({numberOfRows, maxLetters}: {numberOfRows: numb
             word.filter((tile, letterIndex) => letterIndex > index && tile.letter === letter && secretWord[letterIndex] === letter).length < occurencesInSecret;
       }
       
-      function validateLastWord() {
+      function validateLastWord(word: string) {
         // TODO lookup words in dictionary
         // Also don't allow guesses that are already guessed
-        return true;
+        return dictionary.includes(word.toLowerCase());
       }
       
     return (

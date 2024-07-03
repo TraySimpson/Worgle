@@ -28,3 +28,7 @@
 .tile-default {
     background-color: #5e6164;
 }
+
+.tile-error {
+    background-color: #e65d5d;
+}

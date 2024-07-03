@@ -17,6 +17,9 @@ export default function Tile( {tile}: {tile: TileData}) {
       case TileStatus.WRONG_PLACE:
         statusClass = "wrong-place";
         break;
+      case TileStatus.ERROR:
+        statusClass = "error";
+        break;
     }
     return `tile tile-${statusClass}`;
   }

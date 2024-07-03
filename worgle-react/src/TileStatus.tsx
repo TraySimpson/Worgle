@@ -12,5 +12,6 @@ export class TileData {
 export enum TileStatus {
     DEFAULT,
     CORRECT,
-    WRONG_PLACE
+    WRONG_PLACE,
+    ERROR
   }
