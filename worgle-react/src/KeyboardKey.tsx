@@ -5,12 +5,13 @@ export default function KeyboardKey({letter, isUsed, onClick} : {letter: string,
         return `keyboard-key ${isUsed ? 'used' : ''}`;
     }
 
+    function getDisplayText() {
+        return letter === 'Backspace' ? '←' : letter.toUpperCase();
+    }
+
     return (
-        <div 
-            className={getClasses()}
-            onClick={onClick}
-        >
-            {letter.toUpperCase()}
+        <div className={getClasses()} onClick={onClick} >
+            {getDisplayText()}
         </div>
     );
 }

@@ -8,9 +8,9 @@ This project is a simple Wordle clone web app :)
 ### TO DO
 - [X] Add dictionary check to validate words
 - [X] Add click handler for onscreen keyboard
-- [ ] Add backspace button on screen
+- [X] Add backspace button on screen
 - [ ] Fix incorrect words going to next row
-- [ ] Randomly pick word
+- [X] Randomly pick word
 - [ ] Alert bar for invalid word
 - [ ] Alert bar win message
 - [ ] Tile animation for reveal
