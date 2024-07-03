@@ -10,11 +10,12 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
 
     const guessedWords = guesses.map(word => word.map(tile => tile.letter).join(''));
     const lastWord = guessedWords[guessedWords.length - 1];
+    const lastWordErrored = guesses.length > 0 && guesses[guesses.length - 1].some(tile => tile.status === TileStatus.ERROR);
     const isGameWon = lastWord === secretWord;
     const isGameLost = !isGameWon && (
-        guesses.length === numberOfRows && lastWord.length === maxLetters);
+        guesses.length === numberOfRows && lastWord.length === maxLetters) &&
+        !lastWordErrored;
     const isGameOver = isGameLost || isGameWon;
-    const lastWordErrored = guesses.length > 0 && guesses[guesses.length - 1].some(tile => tile.status === TileStatus.ERROR);
     const canBackspace = lastWordErrored || (lastWord.length > 0 && lastWord.length < maxLetters);
 
     useEffect(() => {
@@ -77,11 +78,11 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
       
       function addLetterToGuesses(letter: string) {
         if (lastWord.length === maxLetters) {
-            if (guesses.length === numberOfRows) {
-                throw new Error('No more guesses left');
-            }
             if (lastWordErrored) {
                 return [...guesses.slice(0, guesses.length - 1), [new TileData(letter, TileStatus.DEFAULT)]];
+            }
+            if (guesses.length === numberOfRows) {
+                throw new Error('No more guesses left');
             }
             return [...guesses, [new TileData(letter, TileStatus.DEFAULT)]];
         } else {
@@ -129,12 +130,13 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
         if (isGameWon) {
             return {message: "You win!", type: "success"};
         }
+        if (isGameLost) {
+            return {message: `Game over. Answer: ${secretWord}`, type: "error"};
+        }
         if (lastWordErrored) {
             return {message: "Incorrect spelling. Try again!", type: "error"};
         }
         return {message: "", type: ""};
-      
-
       }
       
     return (
