@@ -7,7 +7,8 @@ import { useEffect, useState } from 'react';
 export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWord}: {numberOfRows: number, maxLetters: number, dictionary: string[], secretWord: string}) {
     const [guesses, setGuesses] = useState<TileData[][]>([[]]);
 
-    const lastWord = guesses[guesses.length - 1].map(tile => tile.letter).join('');
+    const guessedWords = guesses.map(word => word.map(tile => tile.letter).join(''));
+    const lastWord = guessedWords[guessedWords.length - 1];
     const isGameWon = lastWord === secretWord;
     const isGameLost = !isGameWon && (
         guesses.length === numberOfRows && lastWord.length === maxLetters);
@@ -119,9 +120,8 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
       }
       
       function validateLastWord(word: string) {
-        // TODO lookup words in dictionary
-        // Also don't allow guesses that are already guessed
-        return dictionary.includes(word.toLowerCase());
+        return dictionary.includes(word.toLowerCase()) && 
+            !guessedWords.slice(0, guessedWords.length - 1).includes(word);
       }
       
     return (
