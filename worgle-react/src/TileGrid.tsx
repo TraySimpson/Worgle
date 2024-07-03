@@ -33,8 +33,12 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary}: {number
         if (isGameOver) {
             return;
         }
+        let letter = event.key;
+        handleKey(letter);
+      }
+
+      function handleKey(letter: string) {
         try {
-            let letter = event.key;
             if (letter === 'Backspace' && canBackspace) {
                 const lastWord = [...guesses[guesses.length - 1]];
                 setGuesses([...guesses.slice(0, guesses.length - 1),
@@ -128,6 +132,7 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary}: {number
             </div>
             <Keyboard 
                 usedLetters={guesses.flat().map(tile => tile.letter)}
+                onKeyPress={handleKey}
             />
         </>
 

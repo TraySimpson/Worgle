@@ -6,7 +6,7 @@ This project is a simple Wordle clone web app :)
 2. `npm start`
 
 ### TO DO
-- [ ] Add dictionary check to validate words
+- [X] Add dictionary check to validate words
 - [ ] Add click handler for onscreen keyboard
 - [ ] Add backspace button on screen
 - [ ] Randomly pick word

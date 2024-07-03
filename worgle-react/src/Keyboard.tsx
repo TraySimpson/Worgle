@@ -1,7 +1,7 @@
 import KeyboardKey from "./KeyboardKey";
 import './Keyboard.css';
 
-export default function Keyboard({ usedLetters}: { usedLetters: string[] }) {
+export default function Keyboard({ usedLetters, onKeyPress}: { usedLetters: string[], onKeyPress: (letter: string) => void}) {
     let topRow = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
     let middleRow = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
     let bottomRow = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
@@ -14,7 +14,7 @@ export default function Keyboard({ usedLetters}: { usedLetters: string[] }) {
                     key={letter}
                     letter={letter}
                     isUsed={usedLetters.includes(letter)}
-                    onClick={() => console.log(letter)}
+                    onClick={() => onKeyPress(letter)}
                 />
             ))}
             </div>
@@ -24,7 +24,7 @@ export default function Keyboard({ usedLetters}: { usedLetters: string[] }) {
                     key={letter}
                     letter={letter}
                     isUsed={usedLetters.includes(letter)}
-                    onClick={() => console.log(letter)}
+                    onClick={() => onKeyPress(letter)}
                 />
             ))}
             </div>
@@ -34,7 +34,7 @@ export default function Keyboard({ usedLetters}: { usedLetters: string[] }) {
                     key={letter}
                     letter={letter}
                     isUsed={usedLetters.includes(letter)}
-                    onClick={() => console.log(letter)}
+                    onClick={() => onKeyPress(letter)}
                 />
             ))}
             </div>
