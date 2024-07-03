@@ -12,7 +12,8 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
     const isGameLost = !isGameWon && (
         guesses.length === numberOfRows && lastWord.length === maxLetters);
     const isGameOver = isGameLost || isGameWon;
-    const canBackspace = lastWord.length > 0 && lastWord.length < maxLetters;
+    const lastWordErrored = guesses.length > 0 && guesses[guesses.length - 1].some(tile => tile.status === TileStatus.ERROR);
+    const canBackspace = lastWordErrored || (lastWord.length > 0 && lastWord.length < maxLetters);
 
     useEffect(() => {
         document.addEventListener("keydown", handleKeyPress);
@@ -38,7 +39,9 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
 
       function handleKey(letter: string) {
         try {
-            if (letter === 'Backspace' && canBackspace) {
+            if (letter === 'Backspace') {
+                if (!canBackspace)
+                    return;
                 const lastWord = [...guesses[guesses.length - 1]];
                 setGuesses([...guesses.slice(0, guesses.length - 1),
                     lastWord.slice(0, lastWord.length - 1)]);
@@ -74,6 +77,9 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
         if (lastWord.length === maxLetters) {
             if (guesses.length === numberOfRows) {
                 throw new Error('No more guesses left');
+            }
+            if (lastWordErrored) {
+                return [...guesses.slice(0, guesses.length - 1), [new TileData(letter, TileStatus.DEFAULT)]];
             }
             return [...guesses, [new TileData(letter, TileStatus.DEFAULT)]];
         } else {
