@@ -1,8 +1,16 @@
+import { KeyStatus } from './KeyStatus';
 import './KeyboardKey.css';
 
-export default function KeyboardKey({letter, isUsed, onClick} : {letter: string, isUsed: boolean, onClick: () => void}) {
+export default function KeyboardKey({letter, status, onClick} : {letter: string, status: KeyStatus, onClick: () => void}) {
     function getClasses() {
-        return `keyboard-key ${isUsed ? 'used' : ''}`;
+        switch (status) {
+            case KeyStatus.USED:
+                return 'keyboard-key used';
+            case KeyStatus.CORRECT:
+                return 'keyboard-key correct';
+            default:
+                return 'keyboard-key';
+        }
     }
 
     function getDisplayText() {

@@ -158,6 +158,7 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
             <Keyboard 
                 usedLetters={guesses.flat().map(tile => tile.letter)}
                 onKeyPress={handleKey}
+                secretWord={secretWord}
             />
         </>
 
