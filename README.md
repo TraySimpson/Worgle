@@ -17,5 +17,7 @@ This project is a simple Wordle clone web app :)
 - [ ] Tile animation for reveal
 - [ ] Add keydown event listener only on load
 - [ ] Add definitions after game finishes
+- [ ] Add definitions
+- [ ] Rework dictionary
 - [ ] Make secure HTTPS?
 - [ ] Add Docker
