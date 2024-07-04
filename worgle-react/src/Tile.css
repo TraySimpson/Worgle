@@ -1,12 +1,14 @@
 @keyframes tile-rotate {
     0% {
         transform: rotateX(0deg);
+        background-color: #5e6164;
     }
     49.9999% {
         transform: rotateX(90deg);
     }
     50% {
         transform: rotateX(270deg);
+        background-color: initial;
     }
     100% {
         transform: rotateX(360deg);
@@ -30,6 +32,7 @@
 
 .tile-correct, .tile-wrong-place, .tile-incorrect, .tile-error {
     animation: tile-rotate 1s;
+    animation-fill-mode: backwards;
 }
 
 .tile-correct {
@@ -49,8 +52,8 @@
 .tile-row .tile:nth-child(3) { animation-delay: .5s; }
 .tile-row .tile:nth-child(4) { animation-delay: .75s; }
 .tile-row .tile:nth-child(5) { animation-delay: 1s; }
-.tile-row .tile:nth-child(6) { animation-delay: 0s; }
-.tile-row .tile:nth-child(7) { animation-delay: 0s; }
-.tile-row .tile:nth-child(8) { animation-delay: 0s; }
-.tile-row .tile:nth-child(9) { animation-delay: 0s; }
-.tile-row .tile:nth-child(10) { animation-delay: 0s; }
+.tile-row .tile:nth-child(6) { animation-delay: 1.25s; }
+.tile-row .tile:nth-child(7) { animation-delay: 1.5s; }
+.tile-row .tile:nth-child(8) { animation-delay: 1.75s; }
+.tile-row .tile:nth-child(9) { animation-delay: 2s; }
+.tile-row .tile:nth-child(10) { animation-delay: 2.25s; }
