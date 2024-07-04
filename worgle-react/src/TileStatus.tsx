@@ -13,5 +13,6 @@ export enum TileStatus {
     DEFAULT,
     CORRECT,
     WRONG_PLACE,
+    INCORRECT,
     ERROR
   }

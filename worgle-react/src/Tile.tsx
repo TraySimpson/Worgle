@@ -7,9 +7,11 @@ export default function Tile( {tile}: {tile: TileData}) {
 
   function getClasses() {
     let statusClass = "";
+    if (tile.status === TileStatus.DEFAULT)
+      return "tile";
     switch (status) {
-      case TileStatus.DEFAULT:
-        statusClass = "default";
+      case TileStatus.INCORRECT:
+        statusClass = "incorrect";
         break;
       case TileStatus.CORRECT:
         statusClass = "correct";

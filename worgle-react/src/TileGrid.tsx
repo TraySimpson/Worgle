@@ -112,7 +112,7 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
             } else if (letterIsWrongPlace(tile.letter, index, wordToCheck)) {
                 return new TileData(tile.letter, TileStatus.WRONG_PLACE);
             } else {
-                return new TileData(tile.letter, TileStatus.DEFAULT);
+                return new TileData(tile.letter, TileStatus.INCORRECT);
             }});
         return [...state.slice(0, state.length - 1), newWord];
       }
