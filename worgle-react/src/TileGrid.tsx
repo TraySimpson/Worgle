@@ -11,6 +11,9 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
     const guessedWords = guesses.map(word => word.map(tile => tile.letter).join(''));
     const lastWord = guessedWords[guessedWords.length - 1];
     const lastWordErrored = guesses.length > 0 && guesses[guesses.length - 1].some(tile => tile.status === TileStatus.ERROR);
+    const fullGuessWords = lastWord.length === maxLetters && !lastWordErrored ?
+        guessedWords :
+        guessedWords.slice(0, guessedWords.length - 1);
     const isGameWon = lastWord === secretWord;
     const isGameLost = !isGameWon && (
         guesses.length === numberOfRows && lastWord.length === maxLetters) &&
@@ -156,7 +159,7 @@ export default function TileGrid({numberOfRows, maxLetters, dictionary, secretWo
                 duration={2000}
             />
             <Keyboard 
-                usedLetters={guesses.flat().map(tile => tile.letter)}
+                usedLetters={fullGuessWords.map(word => word.split('')).flat()}
                 onKeyPress={handleKey}
                 secretWord={secretWord}
             />
