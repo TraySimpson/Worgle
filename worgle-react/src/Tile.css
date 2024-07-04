@@ -15,6 +15,21 @@
     }
 }
 
+@keyframes tile-error-wiggle {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    12.5%,
+    62.5% {
+        transform: rotate(-5deg);
+    }
+    25%,
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
 .tile {
     border-radius: 3px;
     min-width: 50px;
@@ -30,7 +45,7 @@
     vertical-align: middle;
 }
 
-.tile-correct, .tile-wrong-place, .tile-incorrect, .tile-error {
+.tile-correct, .tile-wrong-place, .tile-incorrect {
     animation: tile-rotate 1s;
     animation-fill-mode: backwards;
 }
@@ -57,3 +72,9 @@
 .tile-row .tile:nth-child(8) { animation-delay: 1.75s; }
 .tile-row .tile:nth-child(9) { animation-delay: 2s; }
 .tile-row .tile:nth-child(10) { animation-delay: 2.25s; }
+
+
+.tile-error {
+    animation: tile-error-wiggle .4s;
+    animation-delay: 0s !important;
+}
