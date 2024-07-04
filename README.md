@@ -1,6 +1,12 @@
 This project is a simple Wordle clone web app :)
 
 #### worgle-react
+##### Run with Docker
+```
+cd worgle-react
+docker build -t worgle-react-app .
+docker run -p 3000:3000 worgle-react-app
+```
 ###### Run instructions
 1. `cd worgle-react`
 2. `npm start`
@@ -14,10 +20,10 @@ This project is a simple Wordle clone web app :)
 - [X] Alert bar for invalid word
 - [X] Alert bar win message
 - [ ] Create fadeout for messages
-- [ ] Tile animation for reveal
+- [X] Tile animation for reveal
 - [ ] Add keydown event listener only on load
 - [ ] Add definitions after game finishes
 - [ ] Add definitions
 - [ ] Rework dictionary
 - [ ] Make secure HTTPS?
-- [ ] Add Docker
+- [X] Add Docker
