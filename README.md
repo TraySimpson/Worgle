@@ -1,15 +1,17 @@
-This project is a simple Wordle clone web app :)
+This project is a simple Wordle clone web I made to learn React
 
-### worgle-react
+![Worgle Screenshot](docs/WorgleScreenshot.png)
+
 ##### Run with Docker
 ```
 cd worgle-react
 docker build -t worgle-react-app .
 docker run -p 3000:3000 worgle-react-app
 ```
-##### Run as a heretic (Non-Docker)
+##### Run with npm
 1. `cd worgle-react`
-2. `npm start`
+2. `npm install --production`
+3. `npm start`
 
 ### TO DO
 - [X] Add dictionary check to validate words
