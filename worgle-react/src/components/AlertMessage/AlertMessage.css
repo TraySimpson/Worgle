@@ -8,16 +8,15 @@
     margin: 5px;
     border-radius: 5px;
     padding: 10px;
-    color: white;
     min-height: 20px;
     height: 20px;
     line-height: 20px;
 }
 
 .alert-error {
-    background-color: #e65d5d;
+    background-color: var(--error-color);
 }
 
 .alert-success {
-    background-color: #4CAF50;
+    background-color: var(--success-color);
 }

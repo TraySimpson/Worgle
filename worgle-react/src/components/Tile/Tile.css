@@ -40,7 +40,6 @@
     background-color: #5e6164;
     margin: 3px;
     font-size: 1.5em;
-    color: #f0f0f0;
     text-align: center;
     vertical-align: middle;
 }
@@ -51,15 +50,15 @@
 }
 
 .tile-correct {
-    background-color: #4a9e4a;
+    background-color: var(--success-color);
 }
 
 .tile-wrong-place {
-    background-color: #c8b339;
+    background-color: var(--warning-color);
 }
 
 .tile-error {
-    background-color: #e65d5d;
+    background-color: var(--error-color);
 }
 
 .tile-row .tile:nth-child(1) { animation-delay: 0s; }

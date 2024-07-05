@@ -1,12 +1,17 @@
+html {
+  --background-color: #303334;
+  --primary-dark-color: #5e6164;
+  --primary-text-color: #f0f0f0;
+  --success-color: #4a9e4a;
+  --warning-color: #c8b339;
+  --error-color: #e65d5d;
+}
+
 body {
   font-family: "Lato", sans-serif;
   font-weight: 700;
   font-style: normal;
+  color: var(--primary-text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
