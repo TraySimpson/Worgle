@@ -1,5 +1,5 @@
-import Tile from './Tile';
-import { TileData } from './TileStatus';
+import Tile from '../Tile/Tile';
+import { TileData } from '../../enums/TileStatus';
 import './TileRow.css';
 
 export default function TileRow({word, maxLetters} : {word: TileData[], maxLetters: number}) {

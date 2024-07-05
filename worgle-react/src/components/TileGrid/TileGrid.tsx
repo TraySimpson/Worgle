@@ -1,7 +1,7 @@
-import AlertMessage from "./AlertMessage";
-import Keyboard from "./Keyboard";
-import TileRow from "./TileRow";
-import { TileData, TileStatus } from "./TileStatus";
+import AlertMessage from "../AlertMessage/AlertMessage";
+import Keyboard from "../Keyboard/Keyboard";
+import TileRow from "../TileRow/TileRow";
+import { TileData, TileStatus } from "../../enums/TileStatus";
 import { useEffect, useState } from 'react';
 
 

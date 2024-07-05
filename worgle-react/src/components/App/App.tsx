@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import TileGrid from './TileGrid';
+import TileGrid from '../TileGrid/TileGrid';
 
 function App() {
   const [dictionary, setDictionary] = useState<string[]>([]);

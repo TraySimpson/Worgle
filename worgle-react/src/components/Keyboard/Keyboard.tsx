@@ -1,6 +1,6 @@
-import KeyboardKey from "./KeyboardKey";
+import KeyboardKey from "../KeyboardKey/KeyboardKey";
 import './Keyboard.css';
-import { KeyStatus } from "./KeyStatus";
+import { KeyStatus } from "../../enums/KeyStatus";
 
 export default function Keyboard({ usedLetters, secretWord, onKeyPress}: { usedLetters: string[], secretWord: string, onKeyPress: (letter: string) => void}) {
     let topRow = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];

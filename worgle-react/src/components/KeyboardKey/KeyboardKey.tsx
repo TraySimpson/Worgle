@@ -1,4 +1,4 @@
-import { KeyStatus } from './KeyStatus';
+import { KeyStatus } from '../../enums/KeyStatus';
 import './KeyboardKey.css';
 
 export default function KeyboardKey({letter, status, onClick} : {letter: string, status: KeyStatus, onClick: () => void}) {

@@ -1,4 +1,4 @@
-import { TileData, TileStatus } from './TileStatus';
+import { TileData, TileStatus } from '../../enums/TileStatus';
 import './Tile.css';
 
 
